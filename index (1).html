@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#fff4e4" />
+  <title>우리 반 마음날씨 · 감정 출석부</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
+  <style>
+    :root{--ink:#35445b;--muted:#7b8898;--cream:#fff9ed;--peach:#fff1e1;--pink:#ffe6e6;--line:#e9e3d9;--green:#3c9571;--shadow:0 14px 38px rgba(83,62,40,.10)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:radial-gradient(circle at 15% 8%,#fff0cb 0,transparent 25%),radial-gradient(circle at 90% 18%,#fee9e6 0,transparent 27%),#fffaf3;color:var(--ink);font-family:'Jua','Malgun Gothic','Apple SD Gothic Neo',sans-serif;font-size:17px}
+    button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}input,textarea,select{border:2px solid #ebe4d8;background:white;color:var(--ink);border-radius:15px;padding:12px 14px;width:100%;outline:none}input:focus,textarea:focus,select:focus{border-color:#efa86d;box-shadow:0 0 0 4px rgba(242,168,93,.14)}textarea{resize:vertical;line-height:1.6}button:focus-visible,.emotion:focus-visible,.student-card:focus-visible{outline:4px solid #398cc4;outline-offset:2px}
+    .page{max-width:1500px;margin:auto;padding:24px 25px 74px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:18px}.brand{display:flex;align-items:center;gap:12px;font-size:26px}.brand-icon{background:white;padding:11px;border-radius:18px;font-size:29px;box-shadow:0 5px 14px #e5ccac55}.top-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.pill{background:#fff;border:1px solid #efe5da;border-radius:40px;padding:9px 15px;color:#637286;font-size:14px}.pill.live{color:#168050;background:#e9f8ef;border-color:#c6e4d0}.pill.warn{color:#ad6b21;background:#fff0d5;border-color:#f4d2a1}.btn{border:0;background:#fff;color:var(--ink);padding:12px 18px;border-radius:15px;box-shadow:0 3px 0 #0000000b;font-size:16px;transition:transform .12s ease,filter .12s}.btn:hover:not(:disabled){filter:brightness(.98);transform:translateY(-2px)}.btn.primary{background:#ffb75f;color:#58380b}.btn.green{background:#71cda0;color:#144a33}.btn.blue{background:#b8d9ff;color:#264b7c}.btn.outline{border:2px solid #eaded1;box-shadow:none}.btn.small{font-size:14px;padding:10px 13px}.btn.block{width:100%}
+    .hero{background:linear-gradient(110deg,#fff1d3,#ffdfbf 65%,#ffe6d5);border:2px solid #f8dec3;border-radius:32px;padding:33px 35px;display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative;overflow:hidden;box-shadow:var(--shadow)}.hero::before{content:'✦';font-size:110px;color:#fff8e177;position:absolute;right:220px;top:-65px}.hero h1{position:relative;z-index:1;font-size:clamp(31px,4vw,54px);margin:4px 0 11px;letter-spacing:-.5px}.hero p{position:relative;z-index:1;margin:0;color:#856749;font-size:clamp(15px,1.8vw,20px)}.hero-note{display:inline-block;background:#fff7e8;border:2px solid #f1d7b1;border-radius:999px;padding:8px 14px;color:#b5844e;font-size:17px;box-shadow:0 4px 12px rgba(170,122,70,.08)}.tabs{display:flex;gap:10px;margin:24px 0}.tab{background:white;border:2px solid #ede4d8;padding:15px 24px;border-radius:19px;font-size:20px;color:#6a7888;flex:1;max-width:240px}.tab.active{background:#fff0d5;border-color:#f4ba6a;color:#975b24}.notice{background:#fff6df;border:1px solid #f6d7a1;color:#895e30;padding:13px 18px;border-radius:16px;line-height:1.5;margin:16px 0}.notice.greenish{background:#e7f6ee;border-color:#badfc9;color:#306e52}.notice.error{background:#ffe8e6;border-color:#efb7b1;color:#a23c35}.hidden{display:none!important}.section{margin-top:20px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 14px}.section h2,.section-head h2{font-size:27px;margin:0}.subtitle{color:var(--muted);font-size:15px;margin:7px 0 0}.card{background:#fff;box-shadow:var(--shadow);border:1px solid #f2e9df;border-radius:25px;padding:24px}.cols{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.cols.equal{grid-template-columns:1fr 1fr}.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat{background:white;border:1px solid #f0e8dd;border-radius:22px;padding:20px 23px;box-shadow:0 6px 20px #645a4b0d}.stat .icon{font-size:26px}.stat strong{font-size:39px;display:block;margin-top:4px}.stat small{color:var(--muted);font-size:14px}.stat:nth-child(2){background:#effaf2}.stat:nth-child(3){background:#fff4e2}.stat:nth-child(4){background:#f4efff}
+    .flexrow{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.flexbetween{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.muted{color:var(--muted)}.smalltext{font-size:14px}.field{display:flex;flex-direction:column;gap:7px}.field label{font-size:16px}.login{max-width:550px;margin:26px auto}.login h2{font-size:31px}.login p{line-height:1.5}.login .field{margin:12px 0}.status{padding:10px 13px;border-radius:13px;background:#f8f7f3;color:#56677b;margin:10px 0;font-size:14px;word-break:break-all}.status.error{background:#fff0ee;color:#bb5249}.roster{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.student-card{border:2px solid #edf0e9;background:#fafcf8;border-radius:14px;text-align:left;padding:12px 10px;min-height:80px;overflow:hidden}.student-card.done{background:#eaf9ee;border-color:#bde6c6}.student-card b{font-size:17px;display:block;overflow-wrap:anywhere}.student-card .mini{display:block;color:#83908c;font-size:13px;margin-top:4px}.student-card.done .mini{color:#387a56}.student-number{font-size:12px;color:#95a29e}.bars{display:flex;flex-direction:column;gap:14px;margin:18px 0}.barline{display:grid;grid-template-columns:105px 1fr 40px;align-items:center;gap:11px;font-size:15px}.bartrack{height:19px;background:#f2f2ed;border-radius:50px;overflow:hidden}.barfill{height:100%;border-radius:50px;transition:width .45s ease}.summary-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.tag{padding:6px 9px;border-radius:12px;background:#f2f5f6;font-size:13px}.record-table{width:100%;border-collapse:collapse;font-size:14px}.record-table th,.record-table td{padding:10px 8px;text-align:left;border-bottom:1px solid #f2eee8}.record-table th{color:#84909c}.table-wrap{overflow:auto;max-height:350px}.qrarea{display:flex;align-items:center;gap:18px;flex-wrap:wrap}.qrbox{width:180px;height:180px;background:white;border:2px dashed #ebd9bf;border-radius:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:10px}.qrbox img,.qrbox canvas{max-width:154px;max-height:154px}.qrinfo{flex:1;min-width:205px;overflow:hidden}.urlfield{font-size:12px;background:#fff8ee;padding:11px;border-radius:12px;word-break:break-all;color:#79644b;margin:8px 0}.placeholder{color:#9a8b7b;text-align:center;font-size:14px}.manage{margin-top:22px}.manage summary{cursor:pointer;font-size:22px;padding:3px 0;list-style:none}.manage summary::before{content:'⚙️ ';}.manage textarea{height:310px;font-size:15px}.hint{background:#fff7e9;padding:12px 15px;border-radius:12px;font-size:14px;color:#88674f;line-height:1.55}.cat-selector{display:flex;gap:7px;flex-wrap:wrap}.cat-btn{border:2px solid transparent;padding:13px 18px;border-radius:18px;background:#f1f1f1;font-size:18px;color:#4c586a;font-family:'Jua','Malgun Gothic','Apple SD Gothic Neo',sans-serif}.cat-btn.chosen{border-width:3px;transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.07)}.emotion-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:14px}.emotion{border:3px solid var(--catColor,#e8e5df);border-radius:24px;background:var(--catLight,#fff);min-height:96px;padding:14px 10px;font-size:22px;font-weight:700;line-height:1.35;color:var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;font-family:'Jua','Malgun Gothic','Apple SD Gothic Neo',sans-serif;box-shadow:0 5px 14px rgba(0,0,0,.04)}.emotion:hover{filter:brightness(.98);transform:translateY(-2px)}.emotion b{font-size:22px;font-weight:400;letter-spacing:.2px}.emotion.selected{border-color:var(--catColor,#f7a139);background:white;box-shadow:0 0 0 5px color-mix(in srgb, var(--catColor,#f7a139) 18%, white)}.choice{border-radius:24px;padding:20px 22px;background:var(--choiceLight,#fff8e9);border:3px solid var(--choiceColor,#f6dfaf);min-height:145px;display:block;box-shadow:0 8px 18px rgba(0,0,0,.04)}.choice-badge{display:inline-block;padding:8px 14px;border-radius:999px;background:white;border:2px solid var(--choiceColor,#f6dfaf);font-size:15px;color:#6a614d;margin-bottom:12px}.choice strong{display:block;font-size:34px;line-height:1.25}.choice p{margin:9px 0 0;line-height:1.6;font-size:20px}.studentpick{display:grid;grid-template-columns:1fr 1fr;gap:16px}.studentpick select,.studentpick input{font-size:20px;padding:16px}.login-explain{line-height:1.65;color:#8c7d6d}.result{border-radius:15px;padding:16px;background:#f3f8f8;text-align:center;margin-top:14px;min-height:55px}.result.success{background:#e6f9eb;color:#216c41}.result.fail{background:#ffe7e3;color:#a5483e}.no-data{text-align:center;padding:30px;color:#95a0ad}.footer{color:#8e8c85;font-size:13px;text-align:center;margin-top:35px}.livepulse{display:inline-block;width:10px;height:10px;background:#48b87a;border-radius:100%;margin-right:5px;box-shadow:0 0 0 4px #48b87a1d}.random-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.random-card{padding:24px;border-radius:24px;background:#f9f5fa;text-align:center;min-height:165px;border:3px solid #e5dff0}.random-card strong{display:block;font-size:33px;line-height:1.3}.random-card p{margin:10px 0 0;color:#697485;font-size:19px;line-height:1.55}.random-category{display:inline-block;margin-bottom:12px;padding:7px 13px;border-radius:999px;background:white;border:2px solid currentColor;font-size:15px}.teacher-only-note{font-size:14px;color:#9c7b5e}.code-list{max-height:185px;overflow:auto;background:#faf9f4;border-radius:12px;padding:12px;font-size:14px;white-space:pre-wrap;line-height:1.8}.callout-step{margin:12px 0;padding:14px;background:#f7f9fa;border-radius:13px}.callout-step strong{color:#846137}.dateinput{width:180px}.teacher-buttons{display:flex;gap:8px;flex-wrap:wrap}.number-button{display:inline-block;background:#eef1f4;border-radius:8px;padding:2px 7px;margin-right:4px;font-size:13px}.quadrant-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quadrant{padding:18px;border-radius:16px;min-height:115px}.quadrant b{font-size:18px}.quadrant p{font-size:14px;line-height:1.7;margin:9px 0 0}.axis-label{text-align:center;color:#7b8898;font-size:14px;margin:9px 0}.purple-quadrant{background:#f1e9fc;padding:15px;border-radius:14px;margin-top:10px;font-size:14px;line-height:1.65}
+    @media(max-width:1050px){.cols,.cols.equal{grid-template-columns:1fr}.emotion-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.roster{grid-template-columns:repeat(4,1fr)}}
+    @media(max-width:640px){body{font-size:16px}.page{padding:14px 12px 45px}.hero{padding:24px 20px;border-radius:23px}.hero h1{font-size:33px}.brand{font-size:20px}.card{padding:17px;border-radius:19px}.tab{padding:12px;font-size:17px}.statgrid{grid-template-columns:repeat(2,1fr)}.stat{padding:14px}.stat strong{font-size:31px}.studentpick{grid-template-columns:1fr}.emotion-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.roster{grid-template-columns:repeat(3,minmax(0,1fr))}.random-grid{grid-template-columns:1fr}.choice strong{font-size:28px}.choice p{font-size:17px}.barline{grid-template-columns:85px 1fr 30px;font-size:13px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+   .emotion-grid{display:block!important}.emotion-heading{font-size:23px;border-radius:15px;padding:13px 17px;margin:23px 0 12px;font-weight:700}.emotion-button-group{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.emotion-button-group .emotion{width:100%;cursor:pointer}.emotion-button-group .emotion.selected{outline:4px solid var(--catColor);outline-offset:2px}@media(max-width:900px){.emotion-button-group{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:540px){.emotion-button-group{grid-template-columns:repeat(2,minmax(0,1fr))}.emotion-button-group .emotion{font-size:19px;min-height:82px}}
+</style>
+  <!-- 하나의 HTML 파일입니다. 실시간 연결 시 Firebase CDN, QR 생성 시 QRCode CDN을 사용합니다. -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+</head>
+<body>
+<div class="page">
+  <header class="topbar">
+    <div class="brand"><span class="brand-icon">🌻</span> <span>우리 반 <span style="color:#dd9351">마음날씨</span></span></div>
+    <div class="top-actions"><span id="todayBadge" class="pill"></span><span id="connectionBadge" class="pill warn">🧪 체험 모드</span></div>
+  </header>
+  <div class="hero"><div><div class="hero-note">오늘도 소중한 우리의 마음</div><h1>오늘 내 마음은 어떤 날씨일까?</h1><p>어떤 감정이든 괜찮아. 내 마음을 알아보는 따뜻한 시간!</p></div></div>
+  <nav class="tabs" aria-label="화면 선택"><button type="button" id="studentTab" class="tab">🧒 학생 화면</button><button type="button" id="teacherTab" class="tab">👩‍🏫 선생님 화면</button></nav>
+  <div id="demoNotice" class="notice"><b>🧪 체험 모드:</b> 지금은 이 브라우저에서 기능을 시험할 수 있습니다. 다른 태블릿과 실시간으로 연결하려면 파일의 Firebase 설정과 보안 규칙을 적용해야 합니다. <b>체험 모드에서는 기기 간 결과가 공유되지 않습니다.</b></div>
+  <div id="liveNotice" class="notice greenish hidden"><b><span class="livepulse"></span>실시간 연결:</b> 학생이 QR코드로 접속하면 결과가 데이터베이스를 통해 교사 화면에 반영됩니다. 학생별 접속 코드를 배부해 주세요.</div>
+
+  <!-- 학생 화면 -->
+  <main id="studentPage" class="hidden">
+    <section class="section card">
+      <div class="section-head"><div><h2>① 내 이름을 골라요 🪪</h2><p class="subtitle">이름과 선생님께 받은 6자리 접속 코드를 입력해 주세요.</p></div></div>
+      <div class="studentpick"><div class="field"><label for="studentSelect">우리 반 친구들</label><select id="studentSelect"><option value="">이름을 선택해 주세요</option></select></div><div class="field"><label for="studentCode">나만의 접속 코드</label><input id="studentCode" type="password" maxlength="6" inputmode="numeric" autocomplete="off" placeholder="6자리 숫자" /></div></div>
+    </section>
+    <section class="section card">
+      <h2>② 오늘의 마음을 찾아요 💛</h2><p class="subtitle">먼저 마음 색깔을 고른 뒤, 가장 가까운 감정 하나를 선택해요.</p>
+      <p class="subtitle" style="margin-top:18px">다섯 가지 색깔의 감정 50개 중 오늘 내 마음에 맞는 버튼 하나를 눌러 주세요.</p>
+      <div id="studentEmotions" class="emotion-grid"></div>
+    </section>
+    <section class="section card"><h2>③ 내 마음에 귀 기울여요</h2><div id="selectedChoice" class="choice" style="margin:18px 0"><span class="choice-badge">감정을 선택해 주세요</span><strong>어떤 마음일까요?</strong><p>위에서 내 감정을 하나 선택해 주세요.</p></div><button id="submitBtn" class="btn primary block" style="padding:19px;font-size:23px" disabled>오늘의 감정 출석 완료!</button><div id="studentResult" class="result" role="status" aria-live="polite">오늘의 마음을 소중히 들어 줄게요.</div></section>
+  </main>
+
+  <!-- 교사 인증 -->
+  <section id="loginPage" class="section card login hidden">
+    <h2>🔐 선생님 로그인</h2><p class="login-explain">학생들의 마음 기록을 안전하게 확인하기 위해 Firebase Authentication에 등록한 교사 이메일로 로그인합니다. 처음 설정하는 방법은 함께 제공된 안내문에 있습니다.</p>
+    <form id="loginForm"><div class="field"><label for="loginEmail">교사 이메일</label><input id="loginEmail" type="email" placeholder="teacher@example.com" required autocomplete="username" /></div><div class="field"><label for="loginPassword">비밀번호</label><input id="loginPassword" type="password" placeholder="비밀번호" required autocomplete="current-password" /></div><button class="btn primary block" type="submit" style="margin-top:15px">선생님 화면 열기</button></form><div id="loginStatus" class="status">먼저 Firebase 프로젝트와 교사 계정을 설정해야 합니다.</div>
+  </section>
+
+  <!-- 교사 화면 -->
+  <main id="teacherPage" class="hidden">
+    <div class="section flexbetween"><div><h2 style="font-size:29px;margin:0">📋 우리 반 마음 현황</h2><p id="teacherGreeting" class="subtitle">학생 24명의 오늘 마음을 만나 보세요.</p></div><div class="teacher-buttons"><input aria-label="확인할 날짜" type="date" class="dateinput" id="teacherDate" /><button class="btn outline small" id="refreshBtn">🔄 새로고침</button><button class="btn outline small hidden" id="logoutBtn">로그아웃</button></div></div>
+    <section class="section statgrid"><div class="stat"><span class="icon">🧒</span><strong id="statTotal">24</strong><small>전체 학생</small></div><div class="stat"><span class="icon">✅</span><strong id="statDone">0</strong><small>마음 출석 완료</small></div><div class="stat"><span class="icon">⏳</span><strong id="statPending">24</strong><small>아직 출석 전</small></div><div class="stat"><span class="icon">📊</span><strong id="statRate">0%</strong><small>오늘의 출석률</small></div></section>
+    <div class="cols section"><section class="card"><div class="section-head"><h2>🌷 학생별 출석 현황</h2><span class="pill">클릭하면 기록 확인</span></div><div id="teacherRoster" class="roster"></div><div id="recordDetail" class="status">학생을 선택하면 해당 날짜의 감정 기록을 확인할 수 있어요.</div></section><section class="card"><h2>🎨 우리 반 감정 분포</h2><p class="subtitle">학생이 선택한 대표 감정 하나로 계산합니다.</p><div id="emotionBars" class="bars"></div><div class="summary-row" id="catSummary"></div><div class="flexrow" style="margin-top:16px"><button class="btn outline small" id="csvBtn">📥 오늘의 결과 CSV 저장</button></div></section></div>
+    <div class="cols section"><section class="card"><h2>학생용 QR코드</h2><p class="subtitle">교실 TV에 띄워 두면 학생들이 스캔해서 접속할 수 있어요.</p><div class="qrarea" style="margin-top:17px"><div id="qrBox" class="qrbox"><span class="placeholder">QR 생성 중…</span></div><div class="qrinfo"><b>우리 반 감정출석부 접속 주소</b><div id="studentUrl" class="urlfield"></div><button id="copyLink" class="btn blue small">학생 링크 복사</button><p id="qrWarning" class="teacher-only-note"></p></div></div></section><section class="card"><h2>오늘의 감정 고르기</h2><p class="subtitle">학생은 학생용 화면에서 50가지 감정 중 오늘의 마음을 직접 선택합니다. 무작위 추첨은 하지 않습니다.</p><div class="hint" style="margin-top:18px">감정 50개는 모두 개별 버튼이며, 다섯 범주별 색으로 구분됩니다.</div></section></div>
+    <section class="card section" aria-label="감정 사분면"><h2>🧭 감정 사분면</h2><p class="subtitle">가로는 기분의 편안함, 세로는 에너지의 높낮이를 뜻해요. 마음의 위치는 사람과 상황에 따라 바뀔 수 있어요.</p><div class="axis-label">⬆️ 에너지 높음</div><div id="quadrantGrid" class="quadrant-grid"></div><div class="axis-label">⬅️ 불편한 기분　 |　 좋은 기분 ➡️<br/>⬇️ 에너지 낮음</div><div id="quadrantPurple" class="purple-quadrant"></div></section>
+    <details class="card manage section" id="managePanel"><summary>우리 반 명단 · 감정 목록 관리</summary><p class="subtitle">왼쪽은 학생 24명, 오른쪽은 감정 50개를 한 줄에 하나씩 입력해 주세요. 접속 코드는 명단 저장 시 자동 생성됩니다.</p><div class="cols equal" style="margin-top:18px"><div class="field"><label for="rosterEditor">🧒 학생 이름 목록 (24명)</label><textarea id="rosterEditor" spellcheck="false"></textarea><span class="muted smalltext" id="rosterCount">24명</span></div><div class="field"><label for="emotionEditor">💛 오늘의 감정 (50개: 각 범주 10개 순서)</label><textarea id="emotionEditor" spellcheck="false"></textarea><span class="muted smalltext" id="emotionCount">50개</span></div></div><div class="hint" style="margin-top:14px">감정 1~10번 노랑 / 11~20번 빨강 / 21~30번 파랑 / 31~40번 초록 / 41~50번 보라. 기존 출석기록은 수정하지 않습니다.</div><div class="flexrow" style="margin-top:14px"><button id="saveSettingsBtn" class="btn green">💾 명단과 감정 저장</button><button id="resetEmotionsBtn" class="btn outline">↩ 기본 50개 감정</button><button id="showCodesBtn" class="btn outline">🔑 학생별 코드 보기</button><button id="exportCodesBtn" class="btn outline">📥 학생별 코드 CSV</button></div><div id="settingsStatus" class="status">저장 후 학생들에게 개인 접속 코드를 알려 주세요.</div><div id="codeList" class="code-list hidden"></div><p class="teacher-only-note">개인 접속 코드는 다른 학생에게 공유하지 않도록 안내해 주세요. 이름 선택만으로는 학생 본인 확인이 되지 않아 코드를 함께 사용합니다.</p></details>
+  </main>
+  <footer class="footer">🌻 서로 다른 마음을 존중하는 우리 반 · 기록은 교사용 화면에서만 확인해요.</footer>
+</div>
+<script>
+'use strict';
+/* ====================================================================
+   [한 번만 설정] Firebase Console > 프로젝트 설정 > 웹 앱 구성의 값을 복사하세요.
+   아래 값이 비어 있으면 체험 모드로 실행됩니다. 아래 값은 비밀키가
+   아니므로 공개 HTML에 들어가도 되지만 DB 보안 규칙은 반드시 적용하세요.
+   ==================================================================== */
+const FIREBASE_CONFIG = {
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  appId: ""
+};
+
+const CATEGORIES = [
+ {id:'yellow',name:'기쁨·즐거움',icon:'😄',color:'#FFD93D',light:'#FFF4CF',description:'기분 좋고 에너지가 높아요'},
+ {id:'red',name:'화·불안',icon:'😠',color:'#FF6B6B',light:'#FFE4E2',description:'불편하고 에너지가 높아요'},
+ {id:'blue',name:'슬픔·지침',icon:'😢',color:'#74B9FF',light:'#E3F0FF',description:'불편하고 에너지가 낮아요'},
+ {id:'green',name:'평온·편안함',icon:'😌',color:'#55C879',light:'#E4F9EA',description:'기분 좋고 에너지가 낮아요'},
+ {id:'purple',name:'복합·애매함',icon:'🤔',color:'#B39DDB',light:'#F1E9FC',description:'여러 마음이 섞여 있거나 잘 모르겠어요'}
+];
+// 감정 이름, 표정, 추천 행동: 각 그룹 10개씩 총 50개
+const FEELINGS = [
+ ['기뻐요','😄','오늘 기쁜 마음을 친구와 나누어 보세요!'],
+ ['신나요','🤩','신나는 에너지를 재미있는 활동에 써 보세요!'],
+ ['설레요','🥰','기대되는 일을 그림이나 말로 표현해 보세요.'],
+ ['즐거워요','😁','오늘 즐거웠던 순간을 하나 기억해 보세요!'],
+ ['뿌듯해요','😎','잘한 일을 스스로 칭찬해 주세요.'],
+ ['자신 있어요','💪','자신 있는 일을 한 번 도전해 보세요!'],
+ ['기대돼요','🌟','기다려지는 일을 친구에게 말해 보세요.'],
+ ['들떠요','🥳','천천히 숨 쉬며 신나는 마음도 즐겨 보세요!'],
+ ['통쾌해요','🎉','기뻤던 이유를 살펴보고 서로를 응원해요.'],
+ ['열정이 넘쳐요','🔥','힘이 나는 일을 하나 골라 시작해 보세요!'],
+ ['화나요','😠','잠깐 멈춰서 숨을 천천히 세 번 쉬어 보세요.'],
+ ['짜증나요','😤','무엇이 짜증 나는지 마음속으로 이름 붙여 보세요.'],
+ ['억울해요','😣','어떤 일이 있었는지 믿을 만한 어른에게 이야기해요.'],
+ ['답답해요','😖','잠깐 몸을 움직이거나 종이에 마음을 적어 보세요.'],
+ ['불안해요','😟','걱정되는 일이 있다면 선생님에게 이야기해도 좋아요.'],
+ ['초조해요','😬','발바닥을 느끼며 천천히 숨을 쉬어 보세요.'],
+ ['무서워요','😨','안전한 곳에서 믿을 만한 어른에게 도움을 요청해요.'],
+ ['긴장돼요','😳','어깨 힘을 빼고 천천히 준비해 봐요.'],
+ ['질투나요','😒','내가 정말 원하는 것이 무엇인지 생각해 보세요.'],
+ ['당황스러워요','😵','잠시 시간을 갖고 무슨 일이 있었는지 살펴봐요.'],
+ ['슬퍼요','😢','울고 싶으면 울어도 괜찮아요. 쉬어도 좋아요.'],
+ ['외로워요','🥺','함께하고 싶은 친구나 선생님에게 다가가 보세요.'],
+ ['서운해요','😔','어떤 말이나 행동이 서운했는지 차분하게 말해요.'],
+ ['속상해요','😞','마음이 아픈 이유를 믿는 사람에게 들려줘도 좋아요.'],
+ ['실망했어요','😥','아쉬웠던 일을 돌아보고 다음 기회를 생각해 봐요.'],
+ ['우울해요','☁️','혼자 참지 말고 선생님이나 가족에게 마음을 알려요.'],
+ ['지쳤어요','😴','물을 마시고 잠깐 쉬며 몸을 돌봐 주세요.'],
+ ['심심해요','🥱','하고 싶은 작은 놀이를 하나 떠올려 보세요.'],
+ ['아무것도 하기 싫어요','🫠','잠깐 쉬거나 아주 작은 일부터 해도 괜찮아요.'],
+ ['허전해요','🍂','내 마음을 따뜻하게 해 주는 일을 생각해 봐요.'],
+ ['편안해요','😌','지금의 편안한 마음을 잠깐 느껴 보세요.'],
+ ['평온해요','🍃','차분한 시간을 천천히 즐겨 보세요.'],
+ ['차분해요','🧘','지금 집중하고 싶은 일을 골라 보세요.'],
+ ['만족스러워요','😊','오늘 만족스러운 일을 마음에 담아 두세요.'],
+ ['감사해요','🙏','고마운 사람에게 따뜻한 말을 전해 보세요!'],
+ ['안심돼요','🤗','마음이 놓인 이유를 천천히 생각해 보세요.'],
+ ['포근해요','🧸','나를 편안하게 만드는 것을 떠올려 보세요.'],
+ ['여유로워요','🌿','지금 하고 싶은 일을 천천히 즐겨 보세요.'],
+ ['마음이 따뜻해요','💖','따뜻한 마음을 작은 친절로 나눠 보세요.'],
+ ['든든해요','🫶','내 편이 되어 주는 사람에게 고마움을 표현해요.'],
+ ['궁금해요','🧐','궁금한 점을 질문하거나 찾아보세요!'],
+ ['혼란스러워요','😵‍💫','한 번에 하나씩 정리하면 괜찮아요.'],
+ ['어색해요','🙂','짧게 인사하며 천천히 익숙해져도 좋아요.'],
+ ['부끄러워요','🫣','작은 용기를 내거나 잠시 기다려도 좋아요.'],
+ ['놀랐어요','😮','천천히 숨 쉬고 무슨 일이었는지 살펴봐요.'],
+ ['아쉬워요','🙁','아쉬웠던 마음을 인정하고 다음 기회를 생각해요.'],
+ ['걱정되면서 기대돼요','😅','두 마음이 함께 있어도 괜찮아요. 하나씩 말해 봐요.'],
+ ['기쁘면서 슬퍼요','🥹','기쁨과 슬픔을 모두 느껴도 괜찮아요.'],
+ ['아무 느낌 없어요','😐','특별한 감정이 없는 날도 있어요. 괜찮아요.'],
+ ['잘 모르겠어요','🤔','지금 감정을 꼭 알아내지 않아도 괜찮아요.']
+];
+const DEFAULT_CATALOG = FEELINGS.map((e,i)=>({id:'e'+String(i+1).padStart(2,'0'),cat:CATEGORIES[Math.floor(i/10)].id,label:e[0],emoji:e[1],tip:e[2]}));
+const EMOTION_LOOKUP = Object.fromEntries(DEFAULT_CATALOG.map(e=>[e.id,e]));
+const $=id=>document.getElementById(id);
+const CONFIGURED = Boolean(FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.authDomain && FIREBASE_CONFIG.databaseURL && FIREBASE_CONFIG.projectId && FIREBASE_CONFIG.appId);
+const STORAGE_KEY='ourClassEmotionBoard_demo_v2';
+const state={live:false,db:null,auth:null,user:null,view:'teacher',teacherActive:false,roster:{},codes:{},catalog:{},records:{},studentCat:'yellow',selectedId:null,chosenStudent:'',date:'',listeners:[],editorDirty:false};
+function todayInKorea(){const p=Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).map(x=>[x.type,x.value]));return `${p.year}-${p.month}-${p.day}`;}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function niceError(err){const code=err&&err.code||'';if(code.includes('permission-denied'))return '접근 권한이 없습니다. Firebase 보안 규칙의 교사 UID 또는 학생 접속 코드를 확인해 주세요.';if(code.includes('invalid-credential')||code.includes('wrong-password')||code.includes('invalid-email'))return '이메일 또는 비밀번호가 올바르지 않아요.';if(code.includes('network-request-failed'))return '인터넷 연결을 확인해 주세요.';if(code.includes('unauthorized-domain'))return 'Firebase Authentication의 승인된 도메인에 GitHub Pages 도메인을 추가해 주세요.';return '처리 중 문제가 생겼어요. '+String(err&&err.message||err||'');}
+function rosterDefaults(){return Object.fromEntries(Array.from({length:24},(_,i)=>[String(i+1).padStart(2,'0'),{name:'학생 '+String(i+1).padStart(2,'0')} ]));}
+function codesFor(roster,oldCodes){const out={};for(const key of Object.keys(roster)){out[key]=oldCodes?.[key]||sixDigit();}return out;}
+function sixDigit(){if(window.crypto?.getRandomValues){const a=new Uint32Array(1);window.crypto.getRandomValues(a);return String(a[0]%900000+100000);}return String(Math.floor(100000+Math.random()*900000));}
+function defaultsCatalog(){return Object.fromEntries(DEFAULT_CATALOG.map(x=>[x.id,{...x}]));}
+function initDemo(){let data;try{data=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null')}catch{data=null}state.roster=data?.roster||rosterDefaults();state.codes=data?.codes||codesFor(state.roster,{});state.catalog=data?.catalog||defaultsCatalog();state.records=data?.records||{};state.live=false;state.teacherActive=true;}
+function saveDemo(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify({roster:state.roster,codes:state.codes,catalog:state.catalog,records:state.records}))}catch(err){console.warn('체험 기록 저장이 제한되었습니다.',err)}try{new BroadcastChannel('class-emotions').postMessage('updated')}catch{}}
+function currentCatalog(){return Object.values(state.catalog).sort((a,b)=>a.id.localeCompare(b.id));}
+function currentRoster(){return Object.entries(state.roster).sort((a,b)=>a[0].localeCompare(b[0]));}
+function currentRecords(){return state.live?state.records:(state.records[state.date]||{});}
+function catFor(id){return CATEGORIES.find(x=>x.id===id)||CATEGORIES[4];}
+function showMessage(id,message,isError=false){const el=$(id);el.textContent=message;el.classList.toggle('error',!!isError);if(id==='studentResult')el.className='result '+(isError?'fail':'success');}
+function setView(view,writeUrl=true){state.view=view;const student=view==='student';$('studentTab').classList.toggle('active',student);$('teacherTab').classList.toggle('active',!student);$('studentPage').classList.toggle('hidden',!student);$('teacherPage').classList.toggle('hidden',student||!state.teacherActive);$('loginPage').classList.toggle('hidden',student||state.teacherActive);if(writeUrl){const url=new URL(location.href);url.searchParams.set('view',view);history.replaceState(null,'',url.toString());}if(student){initStudentAuth();renderStudent();}else{startTeacherIfReady();renderTeacher();} }
+function setConnectionStatus(message,real){$('connectionBadge').textContent=message;$('connectionBadge').className='pill '+(real?'live':'warn');$('demoNotice').classList.toggle('hidden',real);$('liveNotice').classList.toggle('hidden',!real);$('logoutBtn').classList.toggle('hidden',!real||!state.teacherActive);}
+function initFirebase(){if(!CONFIGURED){initDemo();setConnectionStatus('🧪 체험 모드',false);return;}
+ if(typeof firebase==='undefined'){initDemo();setConnectionStatus('⚠️ 네트워크 점검 필요',false);$('demoNotice').innerHTML='<b>⚠️ Firebase 라이브러리를 불러오지 못했습니다.</b> 인터넷 연결을 확인해 주세요. 체험 모드로 표시합니다.';return;}
+ try{firebase.initializeApp(FIREBASE_CONFIG);state.db=firebase.database();state.auth=firebase.auth();state.live=true;state.teacherActive=false;setConnectionStatus('🟢 실시간 모드',true);state.auth.onAuthStateChanged(user=>{state.user=user;state.teacherActive=!!user&&!user.isAnonymous;if(state.view==='student'){initStudentAuth();attachStudentListeners();}else{startTeacherIfReady();} });}
+ catch(err){initDemo();setConnectionStatus('⚠️ Firebase 설정 오류',false);$('demoNotice').textContent=niceError(err);}}
+async function initStudentAuth(){if(!state.live)return;try{if(!state.auth.currentUser){await state.auth.signInAnonymously();}}catch(err){showMessage('studentResult','학생 접속에 실패했어요: '+niceError(err),true)}}
+function clearDbListeners(){for(const [r,e,cb] of state.listeners){r.off(e,cb)}state.listeners=[];}
+function listen(r,e,cb){r.on(e,cb,err=>{if(state.view==='teacher'&&state.teacherActive)showMessage('settingsStatus',niceError(err),true);else if(state.view==='student')showMessage('studentResult',niceError(err),true)});state.listeners.push([r,e,cb]);}
+function attachStudentListeners(){if(!state.live||!state.user||state.view!=='student')return;clearDbListeners();listen(state.db.ref('publicRoster'),'value',s=>{state.roster=s.val()||{};renderStudentSelect()});listen(state.db.ref('catalog'),'value',s=>{state.catalog=s.val()||{};renderStudent()});}
+function startTeacherIfReady(){if(!state.live)return;clearDbListeners();if(state.view!=='teacher')return;state.teacherActive=!!state.auth?.currentUser&&!state.auth.currentUser.isAnonymous;$('teacherPage').classList.toggle('hidden',!state.teacherActive);$('loginPage').classList.toggle('hidden',state.teacherActive);$('logoutBtn').classList.toggle('hidden',!state.teacherActive);if(!state.teacherActive){const u=state.auth?.currentUser;if(u?.isAnonymous)$('loginStatus').textContent='학생 체험 계정으로 연결되어 있습니다. 교사 계정으로 로그인해 주세요.';return;}
+ $('teacherGreeting').textContent='접속한 교사 UID: '+state.auth.currentUser.uid;
+ listen(state.db.ref('publicRoster'),'value',s=>{state.roster=s.val()||{};renderTeacher();renderStudentSelect();syncEditorsIfClosed()});
+ listen(state.db.ref('codes'),'value',s=>{state.codes=s.val()||{};renderCodeList()});
+ listen(state.db.ref('catalog'),'value',s=>{state.catalog=s.val()||{};renderTeacher();syncEditorsIfClosed()});
+ subscribeDate();renderTeacher();}
+function subscribeDate(){if(!state.live||!state.teacherActive||state.view!=='teacher')return;const keeps=[];for(const entry of state.listeners){if(entry[0].toString().includes('/attendance/'))entry[0].off(entry[1],entry[2]);else keeps.push(entry)}state.listeners=keeps;listen(state.db.ref('attendance/'+state.date),'value',s=>{state.records=s.val()||{};renderTeacher()});}
+function syncEditorsIfClosed(){if(!$('managePanel').open&&!state.editorDirty)fillEditors();}
+function fillEditors(){const roster=currentRoster();$('rosterEditor').value=roster.length?roster.map(([,v])=>v.name).join('\n'):Array(24).fill('').join('\n');$('emotionEditor').value=currentCatalog().length?currentCatalog().map(x=>x.label).join('\n'):DEFAULT_CATALOG.map(x=>x.label).join('\n');updateEditorCount();}
+function updateEditorCount(){const names=$('rosterEditor').value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean),feel=$('emotionEditor').value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);$('rosterCount').textContent=names.length+'명 (권장 24명)';$('emotionCount').textContent=feel.length+'개 (필수 50개)';}
+function renderStudentSelect(){const select=$('studentSelect'),old=select.value;select.replaceChildren();let placeholder=document.createElement('option');placeholder.value='';placeholder.textContent='내 이름을 선택해요';select.append(placeholder);for(const [id,s] of currentRoster()){const o=document.createElement('option');o.value=id;o.textContent=`${Number(id)}번 · ${s.name}`;select.append(o)}select.value=state.roster[old]?old:'';state.chosenStudent=select.value;}
+function renderCats(){const el=$('studentCats');el.replaceChildren();for(const cat of CATEGORIES){const b=document.createElement('button');b.className='cat-btn'+(cat.id===state.studentCat?' chosen':'');b.textContent=cat.name;b.style.color='#4f5c6d';b.style.background=cat.light;b.style.borderColor=cat.id===state.studentCat?cat.color:'transparent';b.onclick=()=>{state.studentCat=cat.id;state.selectedId=null;renderStudent();showMessage('studentResult','내 감정을 하나 선택해 주세요.')};el.append(b)}}
+function renderEmotions(){const el=$('studentEmotions');el.replaceChildren();for(const cat of CATEGORIES){const heading=document.createElement('div');heading.className='emotion-heading';heading.textContent=cat.name;heading.style.background=cat.light;heading.style.borderLeft='8px solid '+cat.color;el.append(heading);const group=document.createElement('div');group.className='emotion-button-group';for(const emotion of currentCatalog().filter(x=>x.cat===cat.id)){const btn=document.createElement('button');btn.className='emotion'+(state.selectedId===emotion.id?' selected':'');btn.type='button';btn.setAttribute('aria-pressed',state.selectedId===emotion.id?'true':'false');btn.textContent=emotion.label;btn.style.setProperty('--catColor',cat.color);btn.style.setProperty('--catLight',cat.light);btn.onclick=()=>{state.selectedId=emotion.id;state.studentCat=cat.id;renderEmotions();renderChoice()};group.append(btn)}el.append(group)}if(!currentCatalog().length)el.textContent='감정 목록을 준비하고 있어요.'}
+function renderChoice(){const e=state.catalog[state.selectedId];if(e){const cat=catFor(e.cat);const box=$('selectedChoice');box.style.setProperty('--choiceColor',cat.color);box.style.setProperty('--choiceLight',cat.light);box.innerHTML=`<span class="choice-badge">${escapeHtml(cat.name)}</span><strong>${escapeHtml(e.label)}</strong><p>${escapeHtml(e.tip||'지금의 마음을 천천히 느껴 보세요.')}</p>`}else {const box=$('selectedChoice');box.style.setProperty('--choiceColor','#f6dfaf');box.style.setProperty('--choiceLight','#fff8e9');box.innerHTML='<span class="choice-badge">감정을 선택해 주세요</span><strong>어떤 마음일까요?</strong><p>위에서 내 감정을 하나 선택해 주세요.</p>';}$('submitBtn').disabled=!e;}
+function renderStudent(){renderStudentSelect();renderEmotions();renderChoice();}
+async function submitFeeling(){const id=$('studentSelect').value,emotion=state.catalog[state.selectedId],code=$('studentCode').value.trim();if(!id||!state.roster[id])return showMessage('studentResult','먼저 내 이름을 선택해 주세요.',true);if(!/^\d{6}$/.test(code))return showMessage('studentResult','선생님께 받은 6자리 숫자 코드를 입력해 주세요.',true);if(!emotion)return showMessage('studentResult','오늘의 감정 하나를 골라 주세요.',true);$('submitBtn').disabled=true;showMessage('studentResult','💌 오늘의 마음을 보내고 있어요…');
+ try{if(state.live){if(!state.auth.currentUser)await state.auth.signInAnonymously();const rec={studentId:id,emotionId:emotion.id,emotion:emotion.label,category:emotion.cat,code:code,submittedBy:state.auth.currentUser.uid,updatedAt:firebase.database.ServerValue.TIMESTAMP,date:todayInKorea()};await state.db.ref(`attendance/${rec.date}/${id}`).set(rec);}
+ else{if(code!==state.codes[id])throw new Error('접속 코드가 다릅니다. 선생님에게 확인해 주세요.');const day=todayInKorea();if(!state.records[day])state.records[day]={};state.records[day][id]={studentId:id,emotionId:emotion.id,emotion:emotion.label,category:emotion.cat,submittedBy:'demo',updatedAt:Date.now(),date:day};saveDemo();}
+ showMessage('studentResult',`🌷 ${state.roster[id].name}님, 오늘의 마음을 소중히 기록했어요! 고마워요.`);$('studentCode').value='';if(!state.live){renderTeacher()}}
+ catch(err){showMessage('studentResult','저장하지 못했어요. '+niceError(err),true)}finally{$('submitBtn').disabled=!state.selectedId}}
+function renderQuadrant(){const area=$('quadrantGrid');area.replaceChildren();for(const id of ['red','yellow','blue','green']){const cat=catFor(id),items=currentCatalog().filter(x=>x.cat===id).map(x=>x.label);const el=document.createElement('div');el.className='quadrant';el.style.background=cat.light;el.innerHTML=`<b>${escapeHtml(cat.name)}</b><p>${escapeHtml(items.join(' · ')||'목록 준비 중')}</p>`;area.append(el)}const items=currentCatalog().filter(x=>x.cat==='purple').map(x=>x.label);$('quadrantPurple').innerHTML='<b>복합·애매함 (보라색 · 사분면 밖)</b><div>'+escapeHtml(items.join(' · '))+'</div>';}
+function renderTeacher(){if(state.view!=='teacher')return;renderQuadrant();const roster=currentRoster(),records=currentRecords(),submitted=roster.filter(([id])=>records[id]),total=roster.length,done=submitted.length;$('statTotal').textContent=total;$('statDone').textContent=done;$('statPending').textContent=Math.max(0,total-done);$('statRate').textContent=total?Math.round(100*done/total)+'%':'0%';$('teacherRoster').replaceChildren();for(const [id,student] of roster){const rec=records[id];const b=document.createElement('button');b.type='button';b.className='student-card'+(rec?' done':'');b.innerHTML=`<span class="student-number">${escapeHtml(Number(id))}번</span><b>${escapeHtml(student.name)}</b><span class="mini">${rec?'✅ '+escapeHtml(rec.emotion):'⏳ 아직 출석 전'}</span>`;b.onclick=()=>{$('recordDetail').textContent=rec?`${student.name} · ${rec.emotion} · ${new Date(rec.updatedAt||Date.now()).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})} 제출`:`${student.name} · 아직 마음 출석 전이에요.`};$('teacherRoster').append(b)}
+ if(!roster.length)$('teacherRoster').innerHTML='<p class="no-data">명단을 입력하고 저장해 주세요.</p>';
+ const counts=Object.fromEntries(CATEGORIES.map(c=>[c.id,0]));for(const [id] of submitted){if(counts[records[id].category]!==undefined)counts[records[id].category]++}const bars=$('emotionBars'),summary=$('catSummary');bars.replaceChildren();summary.replaceChildren();for(const cat of CATEGORIES){const count=counts[cat.id],div=document.createElement('div');div.className='barline';const name=document.createElement('span');name.textContent=cat.name;name.style.fontWeight='700';name.style.color='#4f5c6d';const track=document.createElement('div');track.className='bartrack';const fill=document.createElement('div');fill.className='barfill';fill.style.background=cat.color;fill.style.width=(done?100*count/done:0)+'%';track.append(fill);const cnt=document.createElement('b');cnt.textContent=count+'명';div.append(name,track,cnt);bars.append(div);const tag=document.createElement('span');tag.className='tag';tag.textContent=cat.name+' '+count+'명';tag.style.background=cat.light;summary.append(tag)}}
+function renderQR(){const url=new URL(location.href);url.searchParams.set('view','student');url.hash='';$('studentUrl').textContent=url.toString();const qr=$('qrBox');qr.innerHTML='';if(location.protocol==='file:'){$('qrWarning').textContent='현재 PC의 파일 주소는 태블릿에서 열 수 없어요. GitHub Pages에 배포한 뒤 링크를 사용해 주세요.';qr.innerHTML='<span class="placeholder">🌐 GitHub Pages 배포 후 QR 사용 가능</span>';return;}
+ $('qrWarning').textContent=!state.live?'⚠️ 체험 모드 QR은 다른 기기와 데이터를 공유하지 않습니다. Firebase를 연결해 주세요.':'✅ 학생 접속용 주소입니다. 학생별 6자리 코드를 별도로 배부해 주세요.';
+ if(typeof QRCode==='undefined'){qr.innerHTML='<span class="placeholder">QR 라이브러리를 불러오지 못했어요. 아래 주소를 복사해 사용하세요.</span>';return}
+ try{new QRCode(qr,{text:url.toString(),width:154,height:154,colorDark:'#3c4f65',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M})}catch{qr.innerHTML='<span class="placeholder">QR 생성 실패. 링크 복사 기능을 사용해 주세요.</span>'}}
+function renderCodeList(){const div=$('codeList');if(div.classList.contains('hidden'))return;div.textContent=currentRoster().map(([id,v])=>`${Number(id)}번 ${v.name} : ${state.codes[id]||'(미발급)'}`).join('\n')||'명단과 코드를 먼저 저장해 주세요.';}
+async function saveSettings(){const names=$('rosterEditor').value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean),feel=$('emotionEditor').value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);if(names.length!==24)return showMessage('settingsStatus','학생 이름을 24명 정확히 입력해 주세요. 현재 '+names.length+'명입니다.',true);if(feel.length!==50)return showMessage('settingsStatus','감정을 50개 정확히 입력해 주세요. 현재 '+feel.length+'개입니다.',true);if(new Set(names).size!==24)return showMessage('settingsStatus','같은 이름이 두 번 입력되어 있어요. 구별되도록 수정해 주세요.',true);if(feel.some(s=>s.length>35))return showMessage('settingsStatus','감정 이름은 35자 이하로 적어 주세요.',true);if(names.some(s=>s.length>30))return showMessage('settingsStatus','학생 이름은 30자 이하로 적어 주세요.',true);if(new Set(feel).size!==50)return showMessage('settingsStatus','서로 다른 감정 50개를 입력해 주세요.',true);
+ const newRoster=Object.fromEntries(names.map((name,i)=>[String(i+1).padStart(2,'0'),{name}]));const newCodes={};for(const [id,s] of Object.entries(newRoster)){newCodes[id]=state.roster[id]?.name===s.name&&state.codes[id]?state.codes[id]:sixDigit()}
+ const newCatalog=Object.fromEntries(feel.map((name,i)=>{const old=state.catalog[DEFAULT_CATALOG[i].id],base=DEFAULT_CATALOG[i],cat=base.cat;return [base.id,{id:base.id,cat,label:name,emoji:base.emoji,tip: name===base.label?(old?.tip||base.tip):`지금 느끼는 '${name}' 마음을 존중해요. 내게 필요한 것을 천천히 생각해 봐요.`}]}));
+ $('saveSettingsBtn').disabled=true;showMessage('settingsStatus','저장하는 중입니다…');try{if(state.live){await state.db.ref().update({publicRoster:newRoster,codes:newCodes,catalog:newCatalog});}else{state.roster=newRoster;state.codes=newCodes;state.catalog=newCatalog;saveDemo();}state.editorDirty=false;showMessage('settingsStatus','✅ 명단 24명과 감정 50개가 저장됐어요. 학생별 접속 코드를 배부해 주세요.');renderTeacher();renderStudent();renderCodeList()}catch(err){showMessage('settingsStatus',niceError(err),true)}finally{$('saveSettingsBtn').disabled=false}}
+function downloadCSV(filename,rows){const content='\uFEFF'+rows.map(row=>row.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\r\n');const blob=new Blob([content],{type:'text/csv;charset=utf-8;'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;document.body.append(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+function downloadRecords(){const recs=currentRecords(),rows=[['날짜','학생 번호','학생 이름','감정','분류','제출 시각']];for(const [id,student] of currentRoster()){const rec=recs[id];rows.push([state.date,Number(id),student.name,rec?.emotion||'',rec?catFor(rec.category).name:'',rec?.updatedAt?new Date(rec.updatedAt).toLocaleString('ko-KR'):''])}downloadCSV('우리반_감정출석_'+state.date+'.csv',rows)}
+function exportCodes(){if(!currentRoster().length)return showMessage('settingsStatus','학생 명단을 먼저 저장해 주세요.',true);downloadCSV('학생별_접속코드_교사용.csv',[['번호','학생 이름','개인 접속 코드'],...currentRoster().map(([id,v])=>[Number(id),v.name,state.codes[id]||'미발급'])])}
+function prepare(){state.date=todayInKorea();$('teacherDate').value=state.date;$('todayBadge').textContent='📅 '+state.date+' · 마음 출석하는 날';initFirebase();const initial=new URL(location.href).searchParams.get('view')==='student'?'student':'teacher';setView(initial,false);fillEditors();renderQR();}
+$('studentTab').onclick=()=>setView('student');$('teacherTab').onclick=()=>setView('teacher');$('studentSelect').onchange=e=>{state.chosenStudent=e.target.value;showMessage('studentResult','내 마음을 골라 주세요.')};$('submitBtn').onclick=submitFeeling;
+$('teacherDate').onchange=e=>{state.date=e.target.value||todayInKorea();if(state.live)subscribeDate();renderTeacher()};$('refreshBtn').onclick=async()=>{if(state.live){if(state.teacherActive)subscribeDate();}else{initDemo()}renderTeacher();showMessage('settingsStatus','화면을 새로 확인했어요.')};
+$('loginForm').onsubmit=async event=>{event.preventDefault();if(!state.live)return;const btn=event.target.querySelector('button');btn.disabled=true;try{await state.auth.signInWithEmailAndPassword($('loginEmail').value.trim(),$('loginPassword').value);$('loginPassword').value='';$('loginStatus').textContent='교사 로그인에 성공했습니다.';startTeacherIfReady();renderQR()}catch(err){showMessage('loginStatus',niceError(err),true)}finally{btn.disabled=false}};
+$('logoutBtn').onclick=async()=>{if(state.live){await state.auth.signOut();state.teacherActive=false;startTeacherIfReady();}};
+$('csvBtn').onclick=downloadRecords;$('showCodesBtn').onclick=()=>{$('codeList').classList.toggle('hidden');renderCodeList()};$('exportCodesBtn').onclick=exportCodes;
+$('saveSettingsBtn').onclick=saveSettings;$('resetEmotionsBtn').onclick=()=>{$('emotionEditor').value=DEFAULT_CATALOG.map(e=>e.label).join('\n');state.editorDirty=true;updateEditorCount();showMessage('settingsStatus','기본 감정 50개를 입력했어요. 저장 버튼을 눌러 적용하세요.')};
+$('rosterEditor').oninput=$('emotionEditor').oninput=()=>{state.editorDirty=true;updateEditorCount()};
+$('copyLink').onclick=async()=>{const url=$('studentUrl').textContent;try{await navigator.clipboard.writeText(url);$('copyLink').textContent='✅ 복사 완료';setTimeout(()=>$('copyLink').textContent='🔗 학생 링크 복사',2000)}catch{const range=document.createRange();range.selectNodeContents($('studentUrl'));const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);$('copyLink').textContent='주소가 선택됐어요. Ctrl+C';}};
+window.addEventListener('storage',event=>{if(!state.live&&event.key===STORAGE_KEY){initDemo();renderStudent();renderTeacher();fillEditors()}});
+try{new BroadcastChannel('class-emotions').onmessage=()=>{if(!state.live){initDemo();renderStudent();renderTeacher()}}}catch{}
+window.addEventListener('DOMContentLoaded',prepare);
+</script>
+</body>
+</html>
